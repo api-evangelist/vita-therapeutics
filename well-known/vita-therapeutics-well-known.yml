@@ -1,0 +1,71 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  Live anonymous GET of the named /.well-known/ paths on every host this record knows
+  (registrable domain vitatx.com and www.vitatx.com). Vita Therapeutics registers no API
+  baseURL and publishes no OpenAPI, so there is no API host or docs host to add.
+summary: >-
+  No /.well-known/ document is served on any Vita Therapeutics host. Every path on
+  www.vitatx.com returns a Webflow 404 ("Invalid .well-known request"), and the apex
+  vitatx.com terminates the TLS handshake with an internal error, so nothing there is
+  reachable at all. Recorded as an absence; no WellKnown or SecurityTxt pointer is emitted.
+hosts:
+- host: www.vitatx.com
+  note: >-
+    Webflow-hosted; valid Google Trust Services certificate, but the site itself is
+    unpublished and answers 404 on every path including /.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: vitatx.com
+  note: >-
+    Apex resolves (99.83.190.102 / 75.2.70.75, Webflow via AWS Global Accelerator) but the
+    TLS handshake fails with a TLSv1 alert internal error, so no HTTP request completes.
+  documents:
+  - path: /.well-known/security.txt
+    status: 0
+    file: null
+    error: tls-handshake-failed
+  - path: /.well-known/openid-configuration
+    status: 0
+    file: null
+    error: tls-handshake-failed
+  - path: /.well-known/oauth-authorization-server
+    status: 0
+    file: null
+    error: tls-handshake-failed
+  - path: /.well-known/api-catalog
+    status: 0
+    file: null
+    error: tls-handshake-failed
+  - path: /.well-known/ai-plugin.json
+    status: 0
+    file: null
+    error: tls-handshake-failed
+  - path: /.well-known/agent-card.json
+    status: 0
+    file: null
+    error: tls-handshake-failed
+  - path: /.well-known/agent.json
+    status: 0
+    file: null
+    error: tls-handshake-failed
